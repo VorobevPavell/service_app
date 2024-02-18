@@ -7,6 +7,7 @@ from services.serializers import SubscriptionSerializer
 
 
 class SubscriptionView(ReadOnlyModelViewSet):
+    serializer_class = SubscriptionSerializer
     queryset = Subscription.objects.all().prefetch_related(
         'plan',
         Prefetch('client',
@@ -14,4 +15,3 @@ class SubscriptionView(ReadOnlyModelViewSet):
                                                                            'user__email')
                  )
     )
-    serializer_class = SubscriptionSerializer

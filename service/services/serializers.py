@@ -5,8 +5,8 @@ from services.models import Subscription, Plan
 
 class PlanSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Plan
         fields = '__all__'
+        model = Plan
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
@@ -15,5 +15,5 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='client.user.email')
 
     class Meta:
-        fields = ('id', 'plan_id', 'client_name', 'email', 'plan')
         model = Subscription
+        fields = ('id', 'plan_id', 'client_name', 'email', 'plan')

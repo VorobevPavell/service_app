@@ -26,3 +26,4 @@ class SubscriptionView(ReadOnlyModelViewSet):
         response.data = response_data
 
         return response
+

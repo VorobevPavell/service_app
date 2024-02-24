@@ -53,7 +53,7 @@ class Subscription(models.Model):
     service = models.ForeignKey(Service, on_delete=models.PROTECT, related_name='subscriptions')
     client = models.ForeignKey(Client, on_delete=models.PROTECT, related_name='subscriptions')
     price = models.PositiveIntegerField(default=0)
-    comment = models.CharField(default='', max_length=50)
+    comment = models.CharField(default='', max_length=50, db_index=True)
 
     def save(self, *args, **kwargs):
         creating = not bool(self.id)
@@ -61,5 +61,6 @@ class Subscription(models.Model):
         if creating:
             set_price.delay(self.id)
         return result
+
 
 post_delete.connect(delete_total_price_from_cache, sender=Subscription)
